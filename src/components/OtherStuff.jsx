@@ -8,6 +8,7 @@ const OtherStuff = () => {
       <div className="d-flex justify-content-between">
         <div className="d-flex">
           <Route path="/tvshows" element={<TVShows />} />
+          // change to link. Route is not available
         </div>
 
         <div className="ml-4 mt-1">
