@@ -1,14 +1,6 @@
-import { Component } from "react";
-import {
-  Col,
-  Modal,
-  Form,
-  InputGroup,
-  FormControl,
-  Button,
-  Alert,
-} from "react-bootstrap";
-import CommentsList from "./CommentsList";
+import { Component } from "react"
+import { Col, Modal, Form, InputGroup, FormControl, Button, Alert } from "react-bootstrap"
+import CommentsList from "./CommentsList"
 
 class SingleMovie extends Component {
   state = {
@@ -20,33 +12,33 @@ class SingleMovie extends Component {
       rate: "3",
       elementId: this.props.data.imdbID,
     },
-  };
+  }
 
   fetchComments = async (movieID) => {
-    const COMMENTS_URL = "https://striveschool-api.herokuapp.com/api/comments/";
+    const COMMENTS_URL = "https://striveschool-api.herokuapp.com/api/comments/"
     try {
       const response = await fetch(COMMENTS_URL + movieID, {
         headers: {
           Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTUwNmRlY2RhMzE2MzAwMTVkNTEyM2YiLCJpYXQiOjE2MzI2NjA5NzIsImV4cCI6MTYzMzg3MDU3Mn0.vzSXzuRnbhUs7NjBPeeIiCBg6REuTwnoXE-R7Y-zU9Y",
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjA1MTBjOWRhNDBjOTAwMTVmYzhkNmEiLCJpYXQiOjE2NDc1MjIyMzUsImV4cCI6MTY0ODczMTgzNX0.mrWPCxzmzp7t1Lv9axQecZTfPC9nDqmsyQD8KbciOcg",
         },
-      });
+      })
       if (response.ok) {
-        const comments = await response.json();
-        this.setState({ error: false, comments });
+        const comments = await response.json()
+        this.setState({ error: false, comments })
       } else {
-        console.log("an error occurred");
-        this.setState({ error: true });
+        console.log("an error occurred")
+        this.setState({ error: true })
       }
     } catch (error) {
-      console.log(error);
-      this.setState({ error: true });
+      console.log(error)
+      this.setState({ error: true })
     }
-  };
+  }
 
   submitComment = async (e) => {
-    e.preventDefault();
-    const COMMENTS_URL = "https://striveschool-api.herokuapp.com/api/comments/";
+    e.preventDefault()
+    const COMMENTS_URL = "https://striveschool-api.herokuapp.com/api/comments/"
     try {
       const response = await fetch(COMMENTS_URL, {
         method: "POST",
@@ -56,35 +48,35 @@ class SingleMovie extends Component {
             "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTUwNmRlY2RhMzE2MzAwMTVkNTEyM2YiLCJpYXQiOjE2MzI2NjA5NzIsImV4cCI6MTYzMzg3MDU3Mn0.vzSXzuRnbhUs7NjBPeeIiCBg6REuTwnoXE-R7Y-zU9Y",
           "Content-Type": "application/json",
         },
-      });
+      })
       if (response.ok) {
-        alert("Comment added");
+        alert("Comment added")
         this.setState({
           newComment: {
             comment: "",
             rate: 0,
             elementId: this.props.data.imdbID,
           },
-        });
+        })
       } else {
-        alert("An error has occurred");
+        alert("An error has occurred")
       }
     } catch (error) {
-      console.log(error);
+      console.log(error)
     }
-  };
+  }
 
   handleRadioChange = (rating) => {
-    let newComment = this.state.newComment;
-    newComment.rate = rating;
-    this.setState({ newComment });
-  };
+    let newComment = this.state.newComment
+    newComment.rate = rating
+    this.setState({ newComment })
+  }
 
   handleCommentText = (e) => {
-    let newComment = this.state.newComment;
-    newComment.comment = e.currentTarget.value;
-    this.setState({ newComment });
-  };
+    let newComment = this.state.newComment
+    newComment.comment = e.currentTarget.value
+    this.setState({ newComment })
+  }
 
   render() {
     return (
@@ -94,14 +86,11 @@ class SingleMovie extends Component {
           src={this.props.data.Poster}
           alt="movie"
           onClick={() => {
-            this.setState({ selected: !this.state.selected });
-            this.fetchComments(this.props.data.imdbID);
+            this.setState({ selected: !this.state.selected })
+            this.fetchComments(this.props.data.imdbID)
           }}
         />
-        <Modal
-          show={this.state.selected}
-          onHide={() => this.setState({ selected: !this.state.selected })}
-        >
+        <Modal show={this.state.selected} onHide={() => this.setState({ selected: !this.state.selected })}>
           <Modal.Header closeButton>
             <Modal.Title>Movie comments</Modal.Title>
           </Modal.Header>
@@ -112,10 +101,9 @@ class SingleMovie extends Component {
                   Error fetching comments
                 </Alert>
               )}
-              {this.state.comments.length > 0 &&
-                this.state.comments[0].elementId === this.props.data.imdbID && (
-                  <CommentsList comments={this.state.comments} />
-                )}
+              {this.state.comments.length > 0 && this.state.comments[0].elementId === this.props.data.imdbID && (
+                <CommentsList comments={this.state.comments} />
+              )}
               <div className="text-center">
                 <h5 className="my-3">Add a comment</h5>
                 <Form onSubmit={this.submitComment}>
@@ -185,8 +173,8 @@ class SingleMovie extends Component {
           </Modal.Body>
         </Modal>
       </Col>
-    );
+    )
   }
 }
 
-export default SingleMovie;
+export default SingleMovie
