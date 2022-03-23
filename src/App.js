@@ -6,7 +6,6 @@ import "./styles/styles.css"
 import MyNavbar from "./components/MyNavbar"
 import MyFooter from "./components/MyFooter"
 import MovieList from "./components/MovieList"
-import TVShows from "./components/TVShows"
 import OtherStuff from "./components/OtherStuff"
 
 const App = () => {
