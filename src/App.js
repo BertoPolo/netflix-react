@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react"
+import {BrowserRouter,Routes,Route} from "react-router-dom"
 import "bootstrap/dist/css/bootstrap.min.css"
 import "./App.css"
 import "./styles/styles.css"
@@ -96,6 +97,7 @@ const App = () => {
   }
 
   return (
+    <BrowserRouter
     <div>
       <MyNavbar showSearchResult={showSearchResult} />
       <Container fluid className="px-4">
