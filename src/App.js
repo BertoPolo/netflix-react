@@ -99,20 +99,19 @@ const App = () => {
   return (
     <BrowserRouter>
       <MyNavbar showSearchResult={showSearchResult} />
+      <OtherStuff error={isError} />
 
       <Routes>
-        {/* <OtherStuff /> */}
-
         {searchResults?.length > 0 && <Route path="/movielist/:id" element={<MovieList title="Search results" movies={searchResults} />} />}
         {!isError && !searchResults?.length > 0 && (
           <>
-            <Route path="/movielist/Harry Potter" element={<MovieList title="Harry Potter" loading={isLoading} movies={gallery1.slice(0, 6)} />} />
-            <Route path="/movielist/The Avengers" element={<MovieList title="The Avengers" loading={isLoading} movies={gallery2.slice(0, 6)} />} />
+            <Route path="/" element={<MovieList title="Harry Potter" loading={isLoading} movies={gallery1.slice(0, 6)} />} />
+            <Route path="/tvshows" element={<MovieList title="The Avengers" loading={isLoading} movies={gallery2.slice(0, 6)} />} />
             <Route path="/movielist/Star Wars" element={<MovieList title="Star Wars" loading={isLoading} movies={gallery3.slice(0, 6)} />} />
           </>
         )}
       </Routes>
-      {/* <MyFooter /> */}
+      <MyFooter />
     </BrowserRouter>
   )
 }
