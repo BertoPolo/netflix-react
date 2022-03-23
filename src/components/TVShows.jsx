@@ -1,6 +1,6 @@
 const TVShows = () => {
   ;<>
-    <h1>TV Shows</h1>
+    <h2 className="mb-4">TV Shows</h2>
   </>
 }
 
